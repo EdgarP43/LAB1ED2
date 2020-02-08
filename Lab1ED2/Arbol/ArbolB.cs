@@ -236,5 +236,84 @@ namespace Lab1ED2.Arbol
             return contenidoArbol;
         }
 
+        public SodaClass buscar(string nombre)
+        {
+            return BuscarCompa(nombre, raiz);
+        }
+        public SodaClass BuscarCompa(string nombre, Nodo nodo)
+        {
+            if (nodo.hijoIzquierdo == null && nodo.hijoMedio == null && nodo.hijoDerecho == null)
+            {
+                if (nodo.valorDerecho == null)
+                {
+                    if (nodo.valorIzquierdo.nombre == nombre)
+                    {
+                        return nodo.valorIzquierdo;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+                else
+                {
+                    if (nodo.valorDerecho.nombre == nombre)
+                    {
+                        return nodo.valorDerecho;
+                    }
+                    else if (nodo.valorIzquierdo.nombre == nombre)
+                    {
+                        return nodo.valorIzquierdo;
+                    }
+                    else
+                    {
+                        return null;
+                    }
+                }
+            }
+            else if (nodo.valorDerecho == null)
+            {
+                if (nodo.valorIzquierdo.nombre == nombre)
+                {
+                    return nodo.valorIzquierdo;
+                }
+                else
+                {
+                    if (nombre.CompareTo(nodo.valorIzquierdo.nombre) == 1)
+                    {
+                        return BuscarCompa(nombre, nodo.hijoMedio);
+                    }
+                    else
+                    {
+                        return BuscarCompa(nombre, nodo.hijoIzquierdo);
+                    }
+                }
+            }
+            else
+            {
+                if (nombre == nodo.valorIzquierdo.nombre)
+                {
+                    return nodo.valorIzquierdo;
+                }
+                else if (nombre == nodo.valorDerecho.nombre)
+                {
+                    return nodo.valorDerecho;
+                }
+                else if (nombre.CompareTo(nodo.valorIzquierdo.nombre) == -1)
+                {
+                    return BuscarCompa(nombre, nodo.hijoIzquierdo);
+                }
+                else if (nodo.valorIzquierdo.nombre.CompareTo(nombre) == -1 && nombre.CompareTo(nodo.valorDerecho.nombre) == -1)
+                {
+                    return BuscarCompa(nombre, nodo.hijoMedio);
+                }
+                else
+                {
+                    return BuscarCompa(nombre, nodo.hijoDerecho);
+                }
+
+            }
+        }
+
     }
 }
