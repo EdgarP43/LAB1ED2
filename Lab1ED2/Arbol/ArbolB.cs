@@ -28,7 +28,7 @@ namespace Lab1ED2.Arbol
                 }
 
             }
-           
+
         }
         public Nodo insertar(SodaClass dato, Nodo nodo)
         {
@@ -102,13 +102,26 @@ namespace Lab1ED2.Arbol
                     //nodo.valorIzquierdo.nombre < dato.nombre
                     if (nodo.valorIzquierdo.nombre.CompareTo(dato.nombre) == -1)
                     {
-                        var temp = insertar(dato, nodo.hijoMedio);//busca en el hijo medio y guarda lo que este le retorne
-
+                        Nodo temp = insertar(dato, nodo.hijoMedio);//busca en el hijo medio y guarda lo que este le retorne
+                        if (temp != null)
+                        {
+                            nodo.valorDerecho = temp.valorIzquierdo;
+                            nodo.hijoMedio = temp.hijoIzquierdo;
+                            nodo.hijoDerecho = temp.hijoMedio;
+                        }
+                        return null;//como ya se lleno el nodo no tiene que seguir subiendo nada
                     }
                     else
                     {
-                        var temp = insertar(dato, nodo.hijoIzquierdo);//busca en el hijo izquierdo y guarda lo que este le retorne
-
+                        Nodo temp = insertar(dato, nodo.hijoIzquierdo);//busca en el hijo izquierdo y guarda lo que este le retorne
+                        if (temp != null)
+                        {
+                            nodo.valorDerecho = nodo.valorIzquierdo;//para que el mayor siempre quede del lado derecho
+                            nodo.valorIzquierdo = temp.valorIzquierdo;//Se agrega el dato que subio
+                            nodo.hijoIzquierdo = temp.hijoIzquierdo;//como el dato subio por la izquierda el hijo izquierdo del dato se mantiene
+                            nodo.hijoDerecho = nodo.hijoMedio;//ya que el nodo actual tenia 2 hijos y ahora tendra 3 todo lo que tenia en ese 2do hijo tiene que moverse hasta la derecha
+                            nodo.hijoMedio = temp.hijoMedio;//los nodos que traiga temporal como medios o mayores, seran los nuevos hijos del medio ya que el valor derecho del actual siempre sera mayor a estos
+                        }
                         return null;//como ya se lleno el nodo no tiene que seguir subiendo nada
                     }
                 }
@@ -117,22 +130,73 @@ namespace Lab1ED2.Arbol
                     //nodo.valorIzquierdo > dato
                     if (dato.nombre.CompareTo(nodo.valorIzquierdo.nombre) == -1)//si el dato es menor que el dato izquierdo del nodo
                     {
-                        var temporal = insertar(dato, nodo.hijoIzquierdo);
+                        Nodo temporal = insertar(dato, nodo.hijoIzquierdo);
+                        if (temporal != null)
+                        {
+                            Nodo nodoParaSubir = new Nodo();
+                            nodoParaSubir.valorIzquierdo = nodo.valorIzquierdo;
+                            nodoParaSubir.hijoIzquierdo = temporal;
+                            nodo.valorIzquierdo = nodo.valorDerecho;
+                            nodo.valorDerecho = null;//Para liberarle el espacio
+                            nodo.hijoIzquierdo = nodo.hijoMedio;
+                            nodo.hijoMedio = nodo.hijoDerecho;
+                            nodo.hijoDerecho = null;
+                            nodoParaSubir.hijoMedio = nodo;
+                            return nodoParaSubir;
+                        }
+                        else
+                        {
+                            return null;
+                        }
+
                     }
                     //nodo.valorIzquierdo.nombre < dato.nombre && dato.nombre < nodo.valorDerecho.nombre
                     //(dato.nombre.CompareTo(nodo.valorIzquierdo.nombre) == 1) && (dato.nombre.CompareTo(nodo.valorDerecho.nombre) == -1)
                     else if ((dato.nombre.CompareTo(nodo.valorDerecho.nombre) == -1))
                     //si el dato a insertar es mayor que el dato izquierdo del nodo, pero menor que el dato derecho del nodo
                     {
-                        var temporal = insertar(dato, nodo.hijoMedio);
+                        Nodo temporal = insertar(dato, nodo.hijoMedio);
+                        if (temporal != null)
+                        {
+                            Nodo nodoParaSubir = new Nodo();
+                            nodoParaSubir.valorIzquierdo = temporal.valorIzquierdo;
+                            Nodo partirActual = new Nodo();
+                            partirActual.valorIzquierdo = nodo.valorDerecho;
+                            partirActual.hijoMedio = nodo.hijoDerecho;
+                            partirActual.hijoIzquierdo = temporal.hijoMedio;
+                            nodo.valorDerecho = null;
+                            nodo.hijoDerecho = null;
+                            nodoParaSubir.hijoIzquierdo = nodo;
+                            nodo.hijoMedio = temporal.hijoIzquierdo;
+                            nodoParaSubir.hijoMedio = partirActual;
+                            partirActual.hijoIzquierdo = temporal.hijoMedio;
+                            return nodoParaSubir;
+                        }
+                        else
+                        {
+                            return null;
+                        }
                     }
                     else
                     {//si el dato a insertar es mayor que ambos datos del nodo
-                        var temporal = insertar(dato, nodo.hijoDerecho);
+                        Nodo temporal = insertar(dato, nodo.hijoDerecho);
+                        if (temporal != null)
+                        {
+                            Nodo nodoParaSubir = new Nodo();
+                            nodoParaSubir.valorIzquierdo = nodo.valorDerecho;
+                            nodo.hijoDerecho = null;
+                            nodo.valorDerecho = null;
+                            nodoParaSubir.hijoIzquierdo = nodo;
+                            nodoParaSubir.hijoMedio = temporal;
+                            return nodoParaSubir;
+                        }
+                        else
+                        {
+                            return null;
+                        }
                     }
                 }
             }
-            return null;
         }
     }
 }
