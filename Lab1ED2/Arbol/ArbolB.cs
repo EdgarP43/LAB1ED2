@@ -10,6 +10,7 @@ namespace Lab1ED2.Arbol
     public class ArbolB
     {
         private Nodo raiz;
+        public List<SodaClass> contenidoArbol = new List<SodaClass>();
         public void inserta(SodaClass dato)
         {
             if (raiz == null)
@@ -102,7 +103,7 @@ namespace Lab1ED2.Arbol
                     //nodo.valorIzquierdo.nombre < dato.nombre
                     if (nodo.valorIzquierdo.nombre.CompareTo(dato.nombre) == -1)
                     {
-                        Nodo temp = insertar(dato, nodo.hijoMedio);//busca en el hijo medio y guarda lo que este le retorne
+                        var temp = insertar(dato, nodo.hijoMedio);//busca en el hijo medio y guarda lo que este le retorne
                         if (temp != null)
                         {
                             nodo.valorDerecho = temp.valorIzquierdo;
@@ -113,7 +114,7 @@ namespace Lab1ED2.Arbol
                     }
                     else
                     {
-                        Nodo temp = insertar(dato, nodo.hijoIzquierdo);//busca en el hijo izquierdo y guarda lo que este le retorne
+                        var temp = insertar(dato, nodo.hijoIzquierdo);//busca en el hijo izquierdo y guarda lo que este le retorne
                         if (temp != null)
                         {
                             nodo.valorDerecho = nodo.valorIzquierdo;//para que el mayor siempre quede del lado derecho
@@ -130,10 +131,10 @@ namespace Lab1ED2.Arbol
                     //nodo.valorIzquierdo > dato
                     if (dato.nombre.CompareTo(nodo.valorIzquierdo.nombre) == -1)//si el dato es menor que el dato izquierdo del nodo
                     {
-                        Nodo temporal = insertar(dato, nodo.hijoIzquierdo);
+                        var temporal = insertar(dato, nodo.hijoIzquierdo);
                         if (temporal != null)
                         {
-                            Nodo nodoParaSubir = new Nodo();
+                            var nodoParaSubir = new Nodo();
                             nodoParaSubir.valorIzquierdo = nodo.valorIzquierdo;
                             nodoParaSubir.hijoIzquierdo = temporal;
                             nodo.valorIzquierdo = nodo.valorDerecho;
@@ -155,12 +156,12 @@ namespace Lab1ED2.Arbol
                     else if ((dato.nombre.CompareTo(nodo.valorDerecho.nombre) == -1))
                     //si el dato a insertar es mayor que el dato izquierdo del nodo, pero menor que el dato derecho del nodo
                     {
-                        Nodo temporal = insertar(dato, nodo.hijoMedio);
+                        var temporal = insertar(dato, nodo.hijoMedio);
                         if (temporal != null)
                         {
-                            Nodo nodoParaSubir = new Nodo();
+                            var nodoParaSubir = new Nodo();
                             nodoParaSubir.valorIzquierdo = temporal.valorIzquierdo;
-                            Nodo partirActual = new Nodo();
+                            var partirActual = new Nodo();
                             partirActual.valorIzquierdo = nodo.valorDerecho;
                             partirActual.hijoMedio = nodo.hijoDerecho;
                             partirActual.hijoIzquierdo = temporal.hijoMedio;
@@ -179,10 +180,10 @@ namespace Lab1ED2.Arbol
                     }
                     else
                     {//si el dato a insertar es mayor que ambos datos del nodo
-                        Nodo temporal = insertar(dato, nodo.hijoDerecho);
+                        var temporal = insertar(dato, nodo.hijoDerecho);
                         if (temporal != null)
                         {
-                            Nodo nodoParaSubir = new Nodo();
+                            var nodoParaSubir = new Nodo();
                             nodoParaSubir.valorIzquierdo = nodo.valorDerecho;
                             nodo.hijoDerecho = null;
                             nodo.valorDerecho = null;
@@ -198,5 +199,42 @@ namespace Lab1ED2.Arbol
                 }
             }
         }
+        public string InOrden()
+        {
+            string contenido = null;
+            contenidoArbol.RemoveAll(x => 0 == contenidoArbol.Count());
+            var nodos = Recorrido(raiz);
+            if (nodos != null)
+            {
+                foreach (var item in nodos)
+                {
+                    var mostrar = "-------------\n" + "Nombre: " + item.nombre + "\n" + "Sabor: " + item.sabor + "\n" + "Volumen: " + item.volumen + "\n" + "Precio: " + item.precio + "\n" + "Casa productora: " + item.productora + "\n" + "-----------------\n";
+                    contenido += mostrar;
+                }
+            }
+            else
+            {
+                contenido = "Arbol vacio";
+            }
+
+            return contenido;
+        }
+        public List<SodaClass> Recorrido(Nodo nodo)
+        {
+
+            if (nodo != null)
+            {
+                Recorrido(nodo.hijoIzquierdo);
+                contenidoArbol.Add(nodo.valorIzquierdo);
+                Recorrido(nodo.hijoMedio);
+                if (nodo.valorDerecho != null)
+                {
+                    contenidoArbol.Add(nodo.valorDerecho);
+                    Recorrido(nodo.hijoDerecho);
+                }
+            }
+            return contenidoArbol;
+        }
+
     }
 }
