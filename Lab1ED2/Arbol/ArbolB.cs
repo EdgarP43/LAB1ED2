@@ -25,7 +25,7 @@ namespace Lab1ED2.Arbol
                 var temporal = insertar(dato, raiz);
                 if (temporal != null)
                 {
-                    raiz = temporal;//si tuvo que partir la raiz significa que otro tuvo que subir y ese sera la nueva raiz
+                    raiz = temporal;
                 }
 
             }
@@ -35,10 +35,10 @@ namespace Lab1ED2.Arbol
         {
             if (nodo.hijoIzquierdo == null && nodo.hijoMedio == null && nodo.hijoDerecho == null)
             {
-                if (nodo.valorDerecho == null)//Si tiene valor izquierdo pero no derecho
+                if (nodo.valorDerecho == null)
                 {
                     if (nodo.valorIzquierdo.nombre.CompareTo(dato.nombre) == 1)
-                    {//Si el dato que ya tenia el nodo es mayor que el que se desea agregar, el dato que se va a agregar tiene que ser el valor izquierdo
+                    {
                         nodo.valorDerecho = nodo.valorIzquierdo;
                         nodo.valorIzquierdo = dato;
                     }
@@ -50,31 +50,29 @@ namespace Lab1ED2.Arbol
                 }
                 else
                 {
-                    //Tiene que subir
+                   
                     if (nodo.valorDerecho.nombre.CompareTo(dato.nombre) == -1)
-                    {//Para que  suba el valor medio, en este caso seria el que tenia como dato derecho el nodo hoja
-                        var nuevoParaSubir = new Nodo();//creas el nodo que va a subir
+                    {
+                        var nuevoParaSubir = new Nodo();
                         var partirActual = new Nodo();
-                        nuevoParaSubir.valorIzquierdo = nodo.valorDerecho;//le asignas el valor medio
+                        nuevoParaSubir.valorIzquierdo = nodo.valorDerecho;
                         partirActual.valorIzquierdo = dato;
-                        nodo.valorDerecho = null;//cambias por el valor que se inserto
-                        //se le asignan los valores a los hijos que son producto de la particion del actual
+                        nodo.valorDerecho = null;
                         nuevoParaSubir.hijoIzquierdo = nodo;
                         nuevoParaSubir.hijoMedio = partirActual;
 
 
                         return nuevoParaSubir;
                     }
-                    //nodo.valorIzquierdo.nombre > dato.nombre
-                    else if (nodo.valorIzquierdo.nombre.CompareTo(dato.nombre) == 1)//Va a tener que subir el que tenia como dato izquierdo
+                   
+                    else if (nodo.valorIzquierdo.nombre.CompareTo(dato.nombre) == 1)
                     {
-                        var nuevoParaSubir = new Nodo();//creas el nodo que va a subir
+                        var nuevoParaSubir = new Nodo();
                         var partirActual = new Nodo();
                         partirActual.valorIzquierdo = nodo.valorDerecho;
                         nodo.valorDerecho = null;
-                        nuevoParaSubir.valorIzquierdo = nodo.valorIzquierdo;//le asignas el valor medio
-                        nodo.valorIzquierdo = dato;//cambias por el valor que se inserto
-                        //se le asignan los valores a los hijos que son producto de la particion del actual
+                        nuevoParaSubir.valorIzquierdo = nodo.valorIzquierdo;
+                        nodo.valorIzquierdo = dato;
                         nuevoParaSubir.hijoIzquierdo = nodo;
                         nuevoParaSubir.hijoMedio = partirActual;
 
@@ -82,54 +80,51 @@ namespace Lab1ED2.Arbol
                         return nuevoParaSubir;
                     }
                     else
-                    { //tiene que subir el dato actual
-                        var nuevoParaSubir = new Nodo();//creas el nodo que va a subir
-                        nuevoParaSubir.valorIzquierdo = dato;//le asignas el valor medio
+                    { 
+                        var nuevoParaSubir = new Nodo();
+                        nuevoParaSubir.valorIzquierdo = dato;
                         var partirActual = new Nodo();
                         partirActual.valorIzquierdo = nodo.valorDerecho;
-                        //se le asignan los valores a los hijos que son producto de la particion del actual
                         nodo.valorDerecho = null;
                         nuevoParaSubir.hijoIzquierdo = nodo;
                         nuevoParaSubir.hijoMedio = partirActual;
-                        ////*********************
                         return nuevoParaSubir;
                     }
                 }
             }
             else
             {
-                if (nodo.valorDerecho == null)//Si el valor derecho esta vacio
+                if (nodo.valorDerecho == null)
                 {
-                    //nodo.valorIzquierdo.nombre < dato.nombre
                     if (nodo.valorIzquierdo.nombre.CompareTo(dato.nombre) == -1)
                     {
-                        var temp = insertar(dato, nodo.hijoMedio);//busca en el hijo medio y guarda lo que este le retorne
+                        var temp = insertar(dato, nodo.hijoMedio);
                         if (temp != null)
                         {
                             nodo.valorDerecho = temp.valorIzquierdo;
                             nodo.hijoMedio = temp.hijoIzquierdo;
                             nodo.hijoDerecho = temp.hijoMedio;
                         }
-                        return null;//como ya se lleno el nodo no tiene que seguir subiendo nada
+                        return null;
                     }
                     else
                     {
-                        var temp = insertar(dato, nodo.hijoIzquierdo);//busca en el hijo izquierdo y guarda lo que este le retorne
+                        var temp = insertar(dato, nodo.hijoIzquierdo);
                         if (temp != null)
                         {
-                            nodo.valorDerecho = nodo.valorIzquierdo;//para que el mayor siempre quede del lado derecho
-                            nodo.valorIzquierdo = temp.valorIzquierdo;//Se agrega el dato que subio
-                            nodo.hijoIzquierdo = temp.hijoIzquierdo;//como el dato subio por la izquierda el hijo izquierdo del dato se mantiene
-                            nodo.hijoDerecho = nodo.hijoMedio;//ya que el nodo actual tenia 2 hijos y ahora tendra 3 todo lo que tenia en ese 2do hijo tiene que moverse hasta la derecha
-                            nodo.hijoMedio = temp.hijoMedio;//los nodos que traiga temporal como medios o mayores, seran los nuevos hijos del medio ya que el valor derecho del actual siempre sera mayor a estos
+                            nodo.valorDerecho = nodo.valorIzquierdo;
+                            nodo.valorIzquierdo = temp.valorIzquierdo;
+                            nodo.hijoIzquierdo = temp.hijoIzquierdo;
+                            nodo.hijoDerecho = nodo.hijoMedio;
+                            nodo.hijoMedio = temp.hijoMedio;
                         }
-                        return null;//como ya se lleno el nodo no tiene que seguir subiendo nada
+                        return null;
                     }
                 }
-                else//si el nodo actual ya esta lleno, es decir tiene sus 2 valores ocupados
+                else
                 {
-                    //nodo.valorIzquierdo > dato
-                    if (dato.nombre.CompareTo(nodo.valorIzquierdo.nombre) == -1)//si el dato es menor que el dato izquierdo del nodo
+                    
+                    if (dato.nombre.CompareTo(nodo.valorIzquierdo.nombre) == -1)
                     {
                         var temporal = insertar(dato, nodo.hijoIzquierdo);
                         if (temporal != null)
@@ -138,7 +133,7 @@ namespace Lab1ED2.Arbol
                             nodoParaSubir.valorIzquierdo = nodo.valorIzquierdo;
                             nodoParaSubir.hijoIzquierdo = temporal;
                             nodo.valorIzquierdo = nodo.valorDerecho;
-                            nodo.valorDerecho = null;//Para liberarle el espacio
+                            nodo.valorDerecho = null;
                             nodo.hijoIzquierdo = nodo.hijoMedio;
                             nodo.hijoMedio = nodo.hijoDerecho;
                             nodo.hijoDerecho = null;
@@ -151,10 +146,7 @@ namespace Lab1ED2.Arbol
                         }
 
                     }
-                    //nodo.valorIzquierdo.nombre < dato.nombre && dato.nombre < nodo.valorDerecho.nombre
-                    //(dato.nombre.CompareTo(nodo.valorIzquierdo.nombre) == 1) && (dato.nombre.CompareTo(nodo.valorDerecho.nombre) == -1)
                     else if ((dato.nombre.CompareTo(nodo.valorDerecho.nombre) == -1))
-                    //si el dato a insertar es mayor que el dato izquierdo del nodo, pero menor que el dato derecho del nodo
                     {
                         var temporal = insertar(dato, nodo.hijoMedio);
                         if (temporal != null)
@@ -179,7 +171,7 @@ namespace Lab1ED2.Arbol
                         }
                     }
                     else
-                    {//si el dato a insertar es mayor que ambos datos del nodo
+                    {
                         var temporal = insertar(dato, nodo.hijoDerecho);
                         if (temporal != null)
                         {
