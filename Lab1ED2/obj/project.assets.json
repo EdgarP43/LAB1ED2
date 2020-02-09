@@ -5612,7 +5612,6 @@
       "sha512": "HS3iRWZKcUw/8eZ/08GXKY2Bn7xNzQPzf8gRPHGSowX7u7XXu9i9YEaBeBNKUXWfI7qjvT2zXtLUvbN0hds8vg==",
       "type": "package",
       "path": "microsoft.codeanalysis.analyzers/1.1.0",
-      "hasTools": true,
       "files": [
         ".nupkg.metadata",
         "ThirdPartyNotices.rtf",
@@ -5850,7 +5849,6 @@
       "sha512": "OYHhKbFNJCSHpkLAKI9yqTx3+SZ7aHKZaCP+G5ctlL/rZm5Y37Ke00abUhp5mFEJlvEueYfOGDx/GjltEs210A==",
       "type": "package",
       "path": "microsoft.entityframeworkcore.tools/2.1.1",
-      "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -6913,7 +6911,6 @@
       "sha512": "IvTqpjvXEnfPjwIO92QeTWyBNPjVBllt9dws/E29erQRH3BmM46OwO4Hromu4/YtXjDPilHAij3SQP5hDyvvFQ==",
       "type": "package",
       "path": "microsoft.visualstudio.azure.containers.tools.targets/1.0.2105168",
-      "hasTools": true,
       "files": [
         ".nupkg.metadata",
         ".signature.p7s",
@@ -11843,11 +11840,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\Edgar\\source\\repos\\Lab1ED2\\Lab1ED2\\Lab1ED2.csproj",
+      "projectUniqueName": "C:\\Users\\Edgar\\Desktop\\Lab\\Lab1ED2\\Lab1ED2.csproj",
       "projectName": "Lab1ED2",
-      "projectPath": "C:\\Users\\Edgar\\source\\repos\\Lab1ED2\\Lab1ED2\\Lab1ED2.csproj",
+      "projectPath": "C:\\Users\\Edgar\\Desktop\\Lab\\Lab1ED2\\Lab1ED2.csproj",
       "packagesPath": "C:\\Users\\Edgar\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\Edgar\\source\\repos\\Lab1ED2\\Lab1ED2\\obj\\",
+      "outputPath": "C:\\Users\\Edgar\\Desktop\\Lab\\Lab1ED2\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder"

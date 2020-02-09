@@ -1,0 +1,15 @@
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\bin\Debug\netcoreapp2.1\Lab1ED2.deps.json
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\bin\Debug\netcoreapp2.1\Lab1ED2.runtimeconfig.json
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\bin\Debug\netcoreapp2.1\Lab1ED2.runtimeconfig.dev.json
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\bin\Debug\netcoreapp2.1\Lab1ED2.dll
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\bin\Debug\netcoreapp2.1\Lab1ED2.pdb
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\obj\Debug\netcoreapp2.1\Lab1ED2.csprojAssemblyReference.cache
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\obj\Debug\netcoreapp2.1\Lab1ED2.csproj.CoreCompileInputs.cache
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\obj\Debug\netcoreapp2.1\Lab1ED2.RazorAssemblyInfo.cache
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\obj\Debug\netcoreapp2.1\Lab1ED2.RazorAssemblyInfo.cs
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\obj\Debug\netcoreapp2.1\UserSecretsAssemblyInfo.cs
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\obj\Debug\netcoreapp2.1\Lab1ED2.AssemblyInfoInputs.cache
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\obj\Debug\netcoreapp2.1\Lab1ED2.AssemblyInfo.cs
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\obj\Debug\netcoreapp2.1\Lab1ED2.RazorTargetAssemblyInfo.cache
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\obj\Debug\netcoreapp2.1\Lab1ED2.dll
+C:\Users\Edgar\Desktop\Lab\Lab1ED2\obj\Debug\netcoreapp2.1\Lab1ED2.pdb
